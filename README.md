@@ -30,11 +30,11 @@ The first step is to process observed data to model abundance accounting for imp
 
 An early approach has been to adopt the N-mixture model of [Royle, 2004](https://doi.org/10.1111/j.0006-341X.2004.00142.x) to produce a site level abundance measure from spatially replicated count data.
 
-![Crocidura modelled abundance]("output/crocidura_abundance.png")
+![Crocidura modelled abundance](output/crocidura_abundance.png)
 
-![Mus musculus modelled abundance]("output/mus_abundance.png")
+![Mus musculus modelled abundance](output/mus_abundance.png)
 
-![Mastomys natalensis modelled abundance]("output/mastomys_abundance.png")
+![Mastomys natalensis modelled abundance](output/mastomys_abundance.png)
 
 Following this it may be useful to compare this to a mathematical model using parameters estimated from the literature for different species and compare the two approaches to estimating population dynamics.
 
