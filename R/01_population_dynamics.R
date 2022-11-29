@@ -216,7 +216,7 @@ mastomys_natalensis_fcp <- produce_fcp(species = "mastomys_natalensis")
 
 mastomys_natalensis_umf <- unmarkedFramePCount(y = mastomys_natalensis_fcp$y, siteCovs = mastomys_natalensis_fcp$site_covs, obsCovs = mastomys_natalensis_fcp$obs_covs)
 
-mastomys_natalensis_p <- pcount(formula = ~tn + season ~ village + site_habitat, mastomys_natalensis_umf, mixture = "P", K = 105)
+mastomys_natalensis_p <- pcount(formula = ~tn + season ~ village+ site_habitat, mastomys_natalensis_umf, mixture = "P", K = 105)
 mastomys_natalensis_nb <- pcount(formula = ~tn + season ~ village + site_habitat, mastomys_natalensis_umf, mixture = "NB", K = 105)
 mastomys_natalensis_zip <- pcount(formula = ~tn + season ~ village + site_habitat, mastomys_natalensis_umf, mixture = "ZIP", K = 105)
 

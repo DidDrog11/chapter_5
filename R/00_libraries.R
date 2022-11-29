@@ -1,10 +1,15 @@
 if (!require("pacman")) install.packages("pacman")
 
 pkgs =
-  c("cowplot",
+  c("countrycode",
+    "cowplot",
+    "geodata",
+    "googledrive",
     "here",
     "lubridate",
     "sf",
+    "terra",
+    "tidyterra",
     "tidyverse",
     "unmarked"
   )

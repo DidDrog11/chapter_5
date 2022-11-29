@@ -54,6 +54,7 @@ Several modelling approaches could be used. The SDM can be formulated as a BRT o
 2. Probability of detection extracted from Chapter 3.
 3. Landuse data.
 4. Weather data.
+5. Non detection data produced from GBIF [download](https://doi.org/10.15468/dl.7uwp4w)
 
 ### Timeline
 
