@@ -3,6 +3,8 @@ if (!require("pacman")) install.packages("pacman")
 pkgs =
   c("countrycode",
     "cowplot",
+    "dbarts",
+    "embarcadero",
     "geodata",
     "googledrive",
     "here",
@@ -14,7 +16,7 @@ pkgs =
     "unmarked"
   )
 
-pacman::p_load(pkgs, character.only = T)
+pacman::p_load(pkgs, character.only = TRUE)
 
 default_CRS <- "EPSG:4326"
 SL_UTM <- "EPSG:32629"

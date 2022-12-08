@@ -59,3 +59,7 @@ Several modelling approaches could be used. The SDM can be formulated as a BRT o
 ### Timeline
 
 I will need to review SDMs and identify the most suitable approach for this data. There is no clear best approach to take for this and it would be beneficial to adopt several approaches and compare the outputs using sensitivity analyses.
+
+![Mastomys probability of occurrence](output/mastomys_probability_occurrence.png)
+
+![Mastomys occurrence as a binary outcome as occurrence and non-occurrence](output/mastomys_binary_occurrence.png)
