@@ -47,6 +47,11 @@ combined <- left_join(rodent_data, trap_data) %>%
 write_rds(combined, here("data", "rodent_data.rds"))
 write_rds(trap_nights, here("data", "trap_nights.rds"))
 
+robbins_sle <- read_csv(here("data", "robbins_1983.csv"), show_col_types = FALSE) %>%
+  mutate(m_nat_detection = case_when(m_natalensis > 0 ~ TRUE,
+                                     TRUE ~ FALSE)) %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = default_CRS)
+
 rm(list = c("combined", "combined_data", "rodent_data", "trap_data", "trap_nights"))
 
 rodent_data <- read_rds(here("data", "rodent_data.rds"))

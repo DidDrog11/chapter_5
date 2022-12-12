@@ -12,7 +12,14 @@ mastomys_data <- rodent_data %>%
   select(classification = clean_names, geometry) %>%
   st_as_sf(crs = default_CRS) %>%
   mutate(occurrence = 1,
-         source = "trapping")
+         source = "trapping") %>%
+  bind_rows(robbins_sle %>%
+              filter(m_nat_detection == TRUE) %>%
+              mutate(classification = "mastomys natalensis",
+                     occurrence = 1,
+                     source = "robbins") %>%
+              distinct() %>%
+              select(classification, occurrence, source))
 
 non_mastomys_locations <- rodent_data %>%
   group_by(village, site_habitat, clean_names) %>%
@@ -93,12 +100,23 @@ gbif_non_detection <- gbif_rodents %>%
          source = "gbif",
          detection = FALSE)
   
+robbins_non_detection <- robbins_sle %>%
+  filter(m_nat_detection == FALSE) %>%
+  mutate(classification = "mastomys_natalensis",
+         occurrence = 0,
+         source = "robbins",
+         detection = FALSE) %>%
+  select(classification, geometry, occurrence, source, detection)
 
 ## Combine data ------------------------------------------------------------
 
 combined_data <- bind_rows(mastomys_data, chapter_2_mastomys, gbif_mastomys) %>%
   mutate(detection = TRUE) %>%
-  bind_rows(trap_non_detection, gbif_non_detection)
+  bind_rows(trap_non_detection, gbif_non_detection, robbins_non_detection)
+
+empty_geoms <- is.na(st_dimension(combined_data))
+
+combined_data <- combined_data[!empty_geoms, ]
 
 # Spatial data ------------------------------------------------------------
 dir.create(here("data", "spatial"))
@@ -294,7 +312,7 @@ full_model_m_nat <- ggplot() +
        title = "Occurrence of Mastomys natalensis across Sierra Leone (full model)") +
   theme_bw()
 
-cutoff_full <- 0.71
+cutoff_full <- 0.58
 full_model_binary <- c(rast(m_nat_pred_full_model[[1]]) %>%
                     mutate(layer.1 = factor(case_when(layer.1 > cutoff_full ~ "Present",
                                                       layer.1 <= cutoff_full ~ "Absent"),
